@@ -1,6 +1,6 @@
 import tkinter as tk #This line imports the tkinter library and assigns it an alias 'tk' for easier reference.
 from tkinter import messagebox # # This line imports the messagebox module from the tkinter library (to create message boxes)
-import pickle
+import pickle #This line imports the pickle in python to serialize and deserialize data types
 
 
 class Employee: #This line defines a class named Employee
@@ -813,60 +813,56 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
 
     def add_employee(self): #This line defines a method 'add_employee'
         employee_id = self.employee_id_entry.get() # This line  retrieves the employee ID entered in the entry widget
-        first_name = self.first_name_entry.get()
-        last_name = self.last_name_entry.get()
-        department = self.department_entry.get()
-        job_title = self.job_title_entry.get()
-        basic_salary = self.basic_salary_entry.get()
-        age = self.age_entry.get()
-        gender = self.gender_entry.get()
-        date_of_birth = self.date_of_birth_entry.get()
-        nationality = self.nationality_entry.get()
-        years_of_experience = self.years_of_experience_entry.get()
-        phone_number = self.phone_number_entry.get()
-        email = self.email_entry.get()
+        first_name = self.first_name_entry.get() # This line  retrieves the first name entered in the entry widget
+        last_name = self.last_name_entry.get() # This line  retrieves the last name entered in the entry widget
+        department = self.department_entry.get() # This line  retrieves the departement entered in the entry widget
+        job_title = self.job_title_entry.get() # This line  retrieves the job title entered in the entry widget
+        basic_salary = self.basic_salary_entry.get() # This line  retrieves the basic salary entered in the entry widget
+        age = self.age_entry.get() # This line  retrieves the age entered in the entry widget
+        gender = self.gender_entry.get() # This line  retrieves the gender entered in the entry widget
+        date_of_birth = self.date_of_birth_entry.get() # This line  retrieves the date of birth entered in the entry widget
+        nationality = self.nationality_entry.get() # This line  retrieves the nationality entered in the entry widget
+        years_of_experience = self.years_of_experience_entry.get() # This line  retrieves the years of experience entered in the entry widget
+        phone_number = self.phone_number_entry.get() # This line  retrieves the phone number entered in the entry widget
+        email = self.email_entry.get() # This line  retrieves the email entered in the entry widget
 
         employee = Employee(employee_id, first_name, last_name, department, job_title, basic_salary, age, gender,
-                            date_of_birth, nationality, years_of_experience, phone_number, email)
-        self.employees.append(employee)
+                            date_of_birth, nationality, years_of_experience, phone_number, email) #This line creates a new Employee object with the provided details
+        self.employees.append(employee) #This line adds the newly created Employee object to the list of employees
+        messagebox.showinfo("Success", "Employee added successfully") #This line displays a message when adding an employee
+        self.clear_entries() #This line clears the entry fields
 
-        messagebox.showinfo("Success", "Employee added successfully")
+    def delete_employee(self): #This line defines a method 'delete_employee'
+        employee_id = self.employee_id_entry.get() #This line retrieves the employee ID entered in the entry widget
 
-        # Clear entry fields
-        self.clear_entries()
-
-    def delete_employee(self):
-        employee_id = self.employee_id_entry.get()
-
-        for index, employee in enumerate(self.employees):
+        for index, employee in enumerate(self.employees): #This line uses for loop which iterates over the list of employees to find the employee with the matching ID
             if employee.employee_id == employee_id:
-                del self.employees[index]
-                messagebox.showinfo("Success", "Employee deleted successfully")
+                del self.employees[index] #This line removes the employee from the list
+                messagebox.showinfo("Success", "Employee deleted successfully") #This line displays a message when deleting an employee
                 break
-        else:
+        else: #If the employee with the given ID is not found, display an error message
             messagebox.showerror("Error", "Employee not found")
 
-        # Clear entry fields
-        self.clear_entries()
+        self.clear_entries() #This line clears entry fields
 
-    def modify_employee(self):
-        employee_id = self.employee_id_entry.get()
-        first_name = self.first_name_entry.get()
-        last_name = self.last_name_entry.get()
-        department = self.department_entry.get()
-        job_title = self.job_title_entry.get()
-        basic_salary = self.basic_salary_entry.get()
-        age = self.age_entry.get()
-        gender = self.gender_entry.get()
-        date_of_birth = self.date_of_birth_entry.get()
-        nationality = self.nationality_entry.get()
-        years_of_experience = self.years_of_experience_entry.get()
-        phone_number = self.phone_number_entry.get()
-        email = self.email_entry.get()
+    def modify_employee(self): #This line defines a method 'modify_employee'
+        employee_id = self.employee_id_entry.get() # This line  retrieves the employee ID entered in the entry widget
+        first_name = self.first_name_entry.get() # This line  retrieves the first name entered in the entry widget
+        last_name = self.last_name_entry.get() # This line  retrieves the last name entered in the entry widget
+        department = self.department_entry.get() # This line  retrieves the departement entered in the entry widget
+        job_title = self.job_title_entry.get() # This line  retrieves the job title entered in the entry widget
+        basic_salary = self.basic_salary_entry.get() # This line  retrieves the basic salary entered in the entry widget
+        age = self.age_entry.get() # This line  retrieves the age entered in the entry widget
+        gender = self.gender_entry.get() # This line  retrieves the gender entered in the entry widget
+        date_of_birth = self.date_of_birth_entry.get() # This line  retrieves the date of birth entered in the entry widget
+        nationality = self.nationality_entry.get() # This line  retrieves the nationality entered in the entry widget
+        years_of_experience = self.years_of_experience_entry.get() # This line  retrieves the years of experience entered in the entry widget
+        phone_number = self.phone_number_entry.get() # This line  retrieves the phone number entered in the entry widget
+        email = self.email_entry.get() # This line  retrieves the email entered in the entry widget
 
-        for employee in self.employees:
-            if employee.employee_id == employee_id:
-                employee.first_name = first_name
+        for employee in self.employees: #This line uses a for loop which iterates over the list of employees to find the employee with the matching ID
+            if employee.employee_id == employee_id: #if the employee is found based on the ID
+                employee.first_name = first_name #These lines pdate the employee's details with the new information
                 employee.last_name = last_name
                 employee.department = department
                 employee.job_title = job_title
@@ -878,40 +874,38 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
                 employee.years_of_experience = years_of_experience
                 employee.phone_number = phone_number
                 employee.email = email
-                messagebox.showinfo("Success", "Employee modified successfully")
+                messagebox.showinfo("Success", "Employee modified successfully") #This line displays a message when the modification of an employee is done
                 break
         else:
-            messagebox.showerror("Error", "Employee not found")
+            messagebox.showerror("Error", "Employee not found") #This line displays a message when the modification is not succesful because the employee is not found
 
-        # Clear entry fields
-        self.clear_entries()
+        self.clear_entries() #This line clears entry fields
 
-    def display_employees(self):
-        if not self.employees:
-            messagebox.showinfo("Info", "No employees to display")
+    def display_employees(self): #This line defines a method 'display_employees'
+        if not self.employees: #if the employees are not found
+            messagebox.showinfo("Info", "No employees to display") ##This line displays a message when no employees are not found
             return
 
         display_text = ""
-        for employee in self.employees:
+        for employee in self.employees: #This line uses a for loop which iterates over the employees
             display_text += f"Employee ID: {employee.employee_id}, First Name: {employee.first_name}, Last Name: {employee.last_name}, Department: {employee.department}, Job Title: {employee.job_title}, Basic Salary: {employee.basic_salary}, Age: {employee.age}, Gender: {employee.gender}, Date of Birth: {employee.date_of_birth}, Nationality: {employee.nationality}, Years of Experience: {employee.years_of_experience}, Phone Number: {employee.phone_number}, Email: {employee.email}\n"
 
-        messagebox.showinfo("Employees", display_text)
+        messagebox.showinfo("Employees", display_text) #This line displays a message to show all the employees information 
 
-    def display_single_employee(self):
-        employee_id = self.employee_id_entry.get()
+    def display_single_employee(self): #This line defines a method 'display_single_employee'
+        employee_id = self.employee_id_entry.get() #This line retrieves the employee ID entered in the entry widget
 
-        for employee in self.employees:
-            if employee.employee_id == employee_id:
+        for employee in self.employees: #This line uses a for loop which iterates over the employees
+            if employee.employee_id == employee_id: #if the employee is found based on the ID
                 display_text = f"Employee ID: {employee.employee_id}, First Name: {employee.first_name}, Last Name: {employee.last_name}, Department: {employee.department}, Job Title: {employee.job_title}, Basic Salary: {employee.basic_salary}, Age: {employee.age}, Gender: {employee.gender}, Date of Birth: {employee.date_of_birth}, Nationality: {employee.nationality}, Years of Experience: {employee.years_of_experience}, Phone Number: {employee.phone_number}, Email: {employee.email}"
-                messagebox.showinfo("Employee Details", display_text)
+                messagebox.showinfo("Employee Details", display_text) #This line displays a message of the specific employee details
                 break
         else:
-            messagebox.showerror("Error", "Employee not found")
+            messagebox.showerror("Error", "Employee not found") #This line displays a message of the employee not found
 
-        # Clear entry fields
-        self.clear_entries()
+        self.clear_entries() #This line clears entry fields
 
-    def clear_entries(self):
+    def clear_entries(self): #This line defines a method 'clear_entries'
         self.employee_id_entry.delete(0, tk.END)
         self.first_name_entry.delete(0, tk.END)
         self.last_name_entry.delete(0, tk.END)
