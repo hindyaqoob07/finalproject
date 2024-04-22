@@ -920,36 +920,34 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
         self.phone_number_entry.delete(0, tk.END)
         self.email_entry.delete(0, tk.END)
 
-    def add_client(self):
-        client_id = self.client_id_entry.get()
-        first_name = self.client_first_name_entry.get()
-        last_name = self.client_last_name_entry.get()
-        gender = self.client_gender_entry.get()
-        number = self.client_number_entry.get()
-        email = self.client_email_entry.get()
-        num_of_guests = self.client_num_of_guests_entry.get()
-        budget = self.client_budget_entry.get()
-        event_type = self.client_event_type_entry.get()
-        address = self.client_address_entry.get()
-        event_preference = self.client_event_preference_entry.get()
-        event_history = self.client_event_history_entry.get()
-        communication_method = self.client_communication_method_entry.get()
-        event_date_flexibility = self.client_event_date_flexibility_entry.get()
-        event_theme_preferences = self.client_event_theme_preferences_entry.get()
-        special_requests = self.client_special_requests_entry.get()
-        referral_source = self.client_referral_source_entry.get()
-        follow_up_history = self.client_follow_up_history_entry.get()
-        event_timeline = self.client_event_timeline_entry.get()
+    def add_client(self): #This line defines a method 'add_client'
+        client_id = self.client_id_entry.get() # This line  retrieves the client ID entered in the entry widget
+        first_name = self.client_first_name_entry.get() # This line  retrieves the first name entered in the entry widget
+        last_name = self.client_last_name_entry.get() # This line  retrieves the last name entered in the entry widget
+        gender = self.client_gender_entry.get() # This line  retrieves the gender entered in the entry widget
+        number = self.client_number_entry.get() # This line  retrieves the number entered in the entry widget
+        email = self.client_email_entry.get() # This line  retrieves the email entered in the entry widget
+        num_of_guests = self.client_num_of_guests_entry.get() # This line  retrieves the num of guests entered in the entry widget
+        budget = self.client_budget_entry.get() # This line  retrieves the budget entered in the entry widget
+        event_type = self.client_event_type_entry.get() # This line  retrieves the event type entered in the entry widget
+        address = self.client_address_entry.get() # This line  retrieves the address entered in the entry widget
+        event_preference = self.client_event_preference_entry.get() # This line  retrieves the event prefernce entered in the entry widget
+        event_history = self.client_event_history_entry.get() # This line  retrieves the event history entered in the entry widget
+        communication_method = self.client_communication_method_entry.get() # This line  retrieves the communication entered in the entry widget
+        event_date_flexibility = self.client_event_date_flexibility_entry.get() # This line  retrieves the event date flexibility entered in the entry widget
+        event_theme_preferences = self.client_event_theme_preferences_entry.get() # This line  retrieves the event theme prefernces entered in the entry widget
+        special_requests = self.client_special_requests_entry.get() # This line  retrieves the special requests entered in the entry widget
+        referral_source = self.client_referral_source_entry.get() # This line  retrieves the referral source entered in the entry widget
+        follow_up_history = self.client_follow_up_history_entry.get() # This line  retrieves the follow up history entered in the entry widget
+        event_timeline = self.client_event_timeline_entry.get() # This line  retrieves the event timeline entered in the entry widget
 
         client = Client(client_id, first_name, last_name, gender, number, email, num_of_guests, budget, event_type,
                         address, event_preference, event_history, communication_method, event_date_flexibility,
-                        event_theme_preferences, special_requests, referral_source, follow_up_history, event_timeline)
-        self.clients.append(client)
+                        event_theme_preferences, special_requests, referral_source, follow_up_history, event_timeline) #This line creates a new Client object with the provided details
+        self.clients.append(client) #This line adds the newly created Client object to the list of employees
 
-        messagebox.showinfo("Success", "Client added successfully")
-
-        # Clear entry widgets
-        self.clear_client_entries()
+        messagebox.showinfo("Success", "Client added successfully") #This line displays a message when adding an Client
+        self.clear_client_entries() #This line clears the entry widgets
 
     def delete_client(self):
         client_id = self.client_id_entry.get()
