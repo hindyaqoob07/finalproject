@@ -1229,7 +1229,7 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
 
 
     def display_venues(self): #This line defines a method 'display_venues'
-        if not self.venues:#if the clients are not found
+        if not self.venues:#if the venues are not found
             messagebox.showinfo("Info", "No venues to display") #This line shows no venues to display
             return
 
@@ -1275,8 +1275,8 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
         self.venue_photos_entry.delete(0, tk.END)
         self.venue_layout_entry.delete(0, tk.END)
 
-    def add_caterer(self):
-        caterer_id = self.caterer_id_entry.get()
+    def add_caterer(self): #This line defines a method 'add_caterer'
+        caterer_id = self.caterer_id_entry.get() #These lines retrieve all caterer attributes
         name = self.caterer_name_entry.get()
         address = self.caterer_address_entry.get()
         phone_number = self.caterer_phone_entry.get()
@@ -1295,29 +1295,29 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
 
         caterer = CateringCompany(caterer_id, name, address, phone_number, email, instagram, facebook, menu, min_guests,
                           max_guests, price, client_id, event_id, equipment, service_level, setup_requirements)
-        self.caterers.append(caterer)
+        self.caterers.append(caterer) #This line adds the caterer
 
-        messagebox.showinfo("Success", "Caterer added successfully")
+        messagebox.showinfo("Success", "Caterer added successfully") #This line shows a success message
 
-        # Clear entry fields
-        self.clear_entries()
+        
+        self.clear_entries() #This line clears entry fields
 
-    def delete_caterer(self):
-        caterer_id = self.caterer_id_entry.get()
+    def delete_caterer(self):#This line defines a method 'delete_caterer'
+        caterer_id = self.caterer_id_entry.get() # This line retrieves the caterer ID
 
-        for index, caterer in enumerate(self.caterers):
-            if caterer.caterer_ID == caterer_id:  # Make sure the attribute name matches
-                del self.caterers[index]
-                messagebox.showinfo("Success", "Caterer deleted successfully")
+        for index, caterer in enumerate(self.caterers): #This line uses for loop which iterates over the list of caterers to find the caterer with the matching ID
+            if caterer.caterer_ID == caterer_id:  # This line checks if the attribute name matches
+                del self.caterers[index] #This line deletes the caterer
+                messagebox.showinfo("Success", "Caterer deleted successfully") #This line shows a success message of deleting 
                 break
         else:
-            messagebox.showerror("Error", "Caterer not found")
+            messagebox.showerror("Error", "Caterer not found") #if the caterer is not found it displays an error message
 
-        # Clear entry fields
-        self.clear_entries()
+    
+        self.clear_entries() #This line clears entry fields
 
-    def modify_caterer(self):
-        caterer_id = self.caterer_id_entry.get()
+    def modify_caterer(self):#This line defines a method 'modify_caterer'
+        caterer_id = self.caterer_id_entry.get() #These lines retrieve all the attributes to be modified of the caterer
         name = self.caterer_name_entry.get()
         address = self.caterer_address_entry.get()
         phone_number = self.caterer_phone_entry.get()
@@ -1334,8 +1334,8 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
         service_level = self.caterer_service_level_entry.get()
         setup_requirements = self.caterer_setup_requirements_entry.get()
 
-        for caterer in self.caterers:
-            if caterer.caterer_ID == caterer_id:
+        for caterer in self.caterers:#This line iterates over the caterers and searches for the caterer
+            if caterer.caterer_ID == caterer_id:#if the caterer is found based of the ID
                 caterer.name = name
                 caterer.address = address
                 caterer.phone_number = phone_number
@@ -1354,45 +1354,43 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
                 messagebox.showinfo("Success", "Caterer modified successfully")
                 break
         else:
-            messagebox.showerror("Error", "Caterer not found")
+            messagebox.showerror("Error", "Caterer not found") #This line displays an error message if the caterer is not found
 
-        # Clear entry fields
-        self.clear_entries()
+       
+        self.clear_entries() #This line clears entry fields
 
-    def display_caterers(self):
-        if not self.caterers:
-            messagebox.showinfo("Info", "No caterers to display")
+    def display_caterers(self): #This line defines a method 'display_caterers'
+        if not self.caterers: #if the caterers are not found
+            messagebox.showinfo("Info", "No caterers to display") #This line shows a message no caterers to display
             return
 
         display_text = ""
-        for caterer in self.caterers:
-            for key, value in caterer.__dict__.items():
-                display_text += f"{key}: {value}\n"
-            display_text += "\n"  # Add a new line between each caterer
+        for caterer in self.caterers:#This line iterates over the caterers
+            for key, value in caterer.__dict__.items():#This line iterates over each attribute (key-value pair) in the 'caterer' object's dictionary representation
+                display_text += f"{key}: {value}\n" #This line format each attribute and append it to the display_text string
+            display_text += "\n"  # This line adds a new line between each caterer
 
-        messagebox.showinfo("Caterers", display_text)
+        messagebox.showinfo("Caterers", display_text) #This line shows caterers information
 
-    def display_single_catering(self):
-        # Get caterer ID from entry widget
-        caterer_id = self.caterer_id_entry.get()
+    def display_single_catering(self):#This line defines a method 'display_single_catering'
+        caterer_id = self.caterer_id_entry.get() #This line gets caterer ID from entry widget
 
-        # Search and display the caterer details in a messagebox
-        for caterer in self.caterers:
-            if caterer.caterer_ID == caterer_id:
+        
+        for caterer in self.caterers: #This line iterates over the caterers and searches for the caterer
+            if caterer.caterer_ID == caterer_id: #This line checks if the caterer is found based on the ID
                 message = ""
-                for key, value in caterer.__dict__.items():
-                    message += f"{key}: {value}\n"
+                for key, value in caterer.__dict__.items():#This line iterate over each attribute (key-value pair) in the 'caterer' object's dictionary representation
+                    message += f"{key}: {value}\n" #This line format each attribute and append it to the display_text string
 
-                # Show caterer details
-                messagebox.showinfo("Caterer Details", message)
+                
+                messagebox.showinfo("Caterer Details", message) #This line shows caterer details
                 break
         else:
-            # Show error message if caterer not found
-            messagebox.showerror("Error", "Caterer not found.")
+            messagebox.showerror("Error", "Caterer not found.") #This line shows error message if caterer not found
 
-        # Clear entry widget
-        self.clear_entries()
-    def clear_entries(self):
+        
+        self.clear_entries() #This line clear entry widget
+    def clear_entries(self):#This line defines a method 'clear_entries'
         self.caterer_id_entry.delete(0, tk.END)
         self.caterer_name_entry.delete(0, tk.END)
         self.caterer_address_entry.delete(0, tk.END)
