@@ -1408,8 +1408,8 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
         self.caterer_service_level_entry.delete(0, tk.END)
         self.caterer_setup_requirements_entry.delete(0, tk.END)
 
-    def add_event(self):
-        event_id = self.event_id_entry.get()
+    def add_event(self): #This line defines a method 'add_event'
+        event_id = self.event_id_entry.get() #These lines retrieve the event attributes
         date = self.date_entry.get()
         time = self.time_entry.get()
         title = self.title_entry.get()
@@ -1438,30 +1438,28 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
                       music,
                       giveaways, entertainment_company, furniture_supply_company, invoice, event_budget,
                       event_marketing_materials, event_sponsorships)
-        self.events.append(event)
+        self.events.append(event) #This line adds the event
 
-        messagebox.showinfo("Success", "Event added successfully")
+        messagebox.showinfo("Success", "Event added successfully") #This line shows a success message
 
-        # Clear entry fields
-        self.clear_entries()
+        self.clear_entries() #This line clears entry fields
 
 
-    def delete_event(self):
-        event_id = self.event_id_entry.get()
+    def delete_event(self):#This line defines a method 'delete_event'
+        event_id = self.event_id_entry.get() #This line retrieves the event ID
 
-        for index, event in enumerate(self.events):
-            if event.event_ID == event_id:
-                del self.events[index]
-                messagebox.showinfo("Success", "Event deleted successfully")
+        for index, event in enumerate(self.events): #This line iterates over the events
+            if event.event_ID == event_id:#if the event is found based on the ID
+                del self.events[index] #This line deletes the event
+                messagebox.showinfo("Success", "Event deleted successfully") #This line shows a success message
                 break
         else:
-            messagebox.showerror("Error", "Event not found")
+            messagebox.showerror("Error", "Event not found") #This line shows an error message if the event is not found
 
-        # Clear entry fields
-        self.clear_entries()
+        self.clear_entries() #This line clears entry fields
 
-    def modify_event(self):
-        event_id = self.event_id_entry.get()
+    def modify_event(self):#This line defines a method 'modify_event'
+        event_id = self.event_id_entry.get() #These lines retrieves the event attributes
         date = self.date_entry.get()
         time = self.time_entry.get()
         title = self.title_entry.get()
@@ -1485,9 +1483,9 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
         event_marketing_materials = self.event_marketing_materials_entry.get()
         event_sponsorships = self.event_sponsorships_entry.get()
 
-        for event in self.events:
-            if event.event_ID == event_id:
-                event.date = date
+        for event in self.events: #This line iterates over the evebts
+            if event.event_ID == event_id:#if the event is found based on the ID
+                event.date = date 
                 event.time = time
                 event.title = title
                 event.type_of_event = type_of_event
@@ -1512,40 +1510,39 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
                 messagebox.showinfo("Success", "Event modified successfully")
                 break
         else:
-            messagebox.showerror("Error", "Event not found")
+            messagebox.showerror("Error", "Event not found") #This line shows an error message if the event is not found
 
-        # Clear entry fields
-        self.clear_entries()
+        self.clear_entries() #This line clears entry fields
 
-    def display_single_event(self):
-        event_id = self.event_id_entry.get()
-        for event in self.events:
-            if event.event_ID == event_id:
+    def display_single_event(self): #This line defines a method 'display_single_event'
+        event_id = self.event_id_entry.get() #This line retrieves the event ID
+        for event in self.events: #This line iterates over the events
+            if event.event_ID == event_id:#if the event is found based on the ID
                 message = ""
-                for key, value in event.__dict__.items():
-                    message += f"{key}: {value}\n"
+                for key, value in event.__dict__.items(): #This line iterate over each attribute (key-value pair) in the 'event' object's dictionary representation
+                    message += f"{key}: {value}\n" # This line format each attribute and append it to the display_text string
 
-                messagebox.showinfo("Event Details", message)
+                messagebox.showinfo("Event Details", message) #This line shows event details
                 break
         else:
-            messagebox.showerror("Error", "Event not found.")
+            messagebox.showerror("Error", "Event not found.") #This line displays an error message if the event is not found
+        self.clear_entries() #This line clears entry fields
 
-
-    def display_events(self):
-        if not self.events:
-            messagebox.showinfo("Info", "No events to display")
+    def display_events(self):#This line defines a method 'display_events'
+        if not self.events:#if the no events are found
+            messagebox.showinfo("Info", "No events to display") #This line shows a message no event displayed
             return
 
         display_text = ""
-        for event in self.events:
-            for key, value in vars(event).items():
-                display_text += f"{key}: {value}\n"
-            display_text += "\n"  # Add a new line between each event
+        for event in self.events:#This line iterates over the events
+            for key, value in vars(event).items(): #This line iterates over each attribute (key-value pair) in the 'event' object's dictionary representation
+                display_text += f"{key}: {value}\n" #This line format each attribute and append it to the display_text string
+            display_text += "\n"  # This line adds a new line between each event
 
-        messagebox.showinfo("Events", display_text)
-        self.clear_entries()
+        messagebox.showinfo("Events", display_text) #This line shows the event info
+        self.clear_entries() #This line clears enteries
 
-    def clear_entries(self):
+    def clear_entries(self): #This line defines a method 'clear_enteries'
         self.event_id_entry.delete(0, tk.END)
         self.date_entry.delete(0, tk.END)
         self.time_entry.delete(0, tk.END)
