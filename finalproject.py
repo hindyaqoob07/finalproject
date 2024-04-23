@@ -1010,7 +1010,7 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
             if client.client_id == client_id: #This line uses a for loop that iterates over the clients to find the client by ID
                display_text += f"Client ID: {client.client_id}, First Name: {client.first_name}, Last Name: {client.last_name},  Gender: {client.gender}, Number: {client.number}, Email: {client.email}, Budget: {client.budget}, Event Type: {client.event_type}, Address: {client.address}, Event Preference:{client.event_preference}, Event History: {client.event_history}, Communication :{client.communication_method}\n"
                messagebox.showinfo("Client Details", display_text) #This line displays a message of the specific client details
-                break
+               break
         else: #if the client is nout found
             messagebox.showerror("Error", "Client not found") #This line displays a an error message of the specific client not found
 
@@ -1154,8 +1154,8 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
         self.supplier_feedback_history_entry.delete(0, tk.END)
         self.supplier_payment_history_entry.delete(0, tk.END)
 
-    def add_venue(self):
-        venue_id = self.venue_id_entry.get()
+    def add_venue(self):#This line defines a method 'add_venue'
+        venue_id = self.venue_id_entry.get() #This lines reterieves all the venue attributes
         name = self.venue_name_entry.get()
         address = self.venue_address_entry.get()
         contact = self.venue_contact_entry.get()
@@ -1171,32 +1171,28 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
 
         venue = Venue(venue_id, name, address, contact, min_guests, max_guests, price, dress_code, amenities,
                       availability, capacity, photos, layout)
-        self.venues.append(venue)
+        self.venues.append(venue) #This line adds the venue to venues
 
         messagebox.showinfo("Success", "Venue added successfully")
 
-        # Clear entry fields
-        self.clear_entries()
+        self.clear_entries() #This line clears entry fields
 
-    def delete_venue(self):
-        venue_id = self.venue_id_entry.get()
+    def delete_venue(self): #This line defines a method 'delete_venue'
+        venue_id = self.venue_id_entry.get() #This line gets venue ID from entry widget
 
-        # Search and delete the venue
-        for venue in self.venues:
-            if venue.venue_ID == venue_id:
-                self.venues.remove(venue)
-                # Show success message
-                messagebox.showinfo("Success", "Venue deleted successfully.")
+        for venue in self.venues:#This line uses a for loop to search for the venue
+            if venue.venue_ID == venue_id: #if the venue is found based on the ID
+                self.venues.remove(venue) #This line removes the venue
+                messagebox.showinfo("Success", "Venue deleted successfully.") #This line shows success message
                 break
         else:
             # Show error message if venue not found
             messagebox.showerror("Error", "Venue not found.")
 
-        # Clear entry widget
-        self.clear_entries()
+        self.clear_entries() #This line clears entry fields
 
-    def modify_venue(self):
-        venue_id = self.venue_id_entry.get()
+    def modify_venue(self): #This line defines a method 'modify_venue'
+        venue_id = self.venue_id_entry.get() #These lines update venue details
         name = self.venue_name_entry.get()
         address = self.venue_address_entry.get()
         contact = self.venue_contact_entry.get()
@@ -1210,8 +1206,8 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
         photos = self.venue_photos_entry.get()
         layout = self.venue_layout_entry.get()
 
-        for venue in self.venues:
-            if venue.venue_ID == venue_id:
+        for venue in self.venues: #This line iterates over the venues
+            if venue.venue_ID == venue_id:#This line searches for the venue based on the ID
                 venue.name = name
                 venue.address = address
                 venue.contact = contact
@@ -1224,49 +1220,47 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
                 venue.capacity = capacity
                 venue.photos = photos
                 venue.layout = layout
-                messagebox.showinfo("Success", "Venue modified successfully")
+                messagebox.showinfo("Success", "Venue modified successfully") #This line shows a success message
                 break
         else:
-            messagebox.showerror("Error", "Venue not found")
+            messagebox.showerror("Error", "Venue not found") #if venue is not found an error message shows
 
-        # Clear entry fields
-        self.clear_entries()
+        self.clear_entries() #This line clears entry fields
 
-    def display_venues(self):
-        if not self.venues:
-            messagebox.showinfo("Info", "No venues to display")
+
+    def display_venues(self): #This line defines a method 'display_venues'
+        if not self.venues:#if the clients are not found
+            messagebox.showinfo("Info", "No venues to display") #This line shows no venues to display
             return
 
         display_text = ""
-        for venue in self.venues:
-            for key, value in vars(venue).items():
-                display_text += f"{key}: {value}\n"
-            display_text += "\n"  # Add a new line between each venue
+        for venue in self.venues: #This line uses a for loop that iterates over the venues
+            for key, value in vars(venue).items(): #This line iterates over each key-value pair in the 'venues' dictionary
+                display_text += f"{key}: {value}\n" #This line format each key-value pair and append it to the message string
+            display_text += "\n"  # This line adds a new line between each venue
 
         messagebox.showinfo("Venues", display_text)
 
-    def display_single_venue(self):
-        venue_id = self.venue_id_entry.get()
+    def display_single_venue(self):  #This line defines a method 'display_single_venue'
+        venue_id = self.venue_id_entry.get() #This line gets venue ID from entry widget
 
-        # Search and display the venue details in a messagebox
-        for venue in self.venues:
-            if venue.venue_ID == venue_id:
+        for venue in self.venues:#This line iterates over the venues and searches for the venue
+            if venue.venue_ID == venue_id:#if the venue is found based on the ID
                 message = ""
-                for key, value in vars(venue).items():
-                    message += f"{key}: {value}\n"
+                for key, value in vars(venue).items():#This line iterates over each key-value pair in the 'venues' dictionary
+                    message += f"{key}: {value}\n" #This line format each key-value pair and append it to the message string
 
-                # Show venue details
-                messagebox.showinfo("Venue Details", message)
+               
+                messagebox.showinfo("Venue Details", message) #This line  shows venue details
                 break
         else:
-            # Show error message if venue not found
-            messagebox.showerror("Error", "Venue not found.")
+            messagebox.showerror("Error", "Venue not found.") #This line shows an error message if venue not found
 
-        # Clear entry widget
-        self.clear_entries()
+        
+        self.clear_entries() #This line clear entry widget
 
 
-    def clear_entries(self):
+    def clear_entries(self): #This line defines a method 'clear_entries'
         self.venue_id_entry.delete(0, tk.END)
         self.venue_name_entry.delete(0, tk.END)
         self.venue_address_entry.delete(0, tk.END)
