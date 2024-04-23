@@ -1566,30 +1566,30 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
         self.event_budget_entry.delete(0, tk.END)
         self.event_marketing_materials_entry.delete(0, tk.END)
         self.event_sponsorships_entry.delete(0, tk.END)
-    def save_data(self):
-        with open('employees.pkl', 'wb') as file:
-            pickle.dump(self.employees, file)
+    def save_data(self):#This line defines a method 'save_data'
+        with open('employees.pkl', 'wb') as file: #This line opens a file named 'employees.pkl' in write-binary mode
+            pickle.dump(self.employees, file) # This line serialize and dump the 'employees' attribute of the current object into the file
 
-        with open('clients.pkl', 'wb') as file:
-            pickle.dump(self.clients, file)
+        with open('clients.pkl', 'wb') as file:#This line opens a file named 'clients.pkl' in write-binary mode
+            pickle.dump(self.clients, file) # This line serialize and dump the 'clients' attribute of the current object into the file
 
-        with open('events.pkl', 'wb') as file:
-            pickle.dump(self.events, file)
+        with open('events.pkl', 'wb') as file:#This line opens a file named 'events.pkl' in write-binary mode
+            pickle.dump(self.events, file) # This line serialize and dump the 'events' attribute of the current object into the file
 
-        with open('suppliers.pkl', 'wb') as file:
-            pickle.dump(self.suppliers, file)
+        with open('suppliers.pkl', 'wb') as file:#This line opens a file named 'suppliers.pkl' in write-binary mode
+            pickle.dump(self.suppliers, file) # This line serialize and dump the 'suppliers' attribute of the current object into the file
 
-        with open('caterers.pkl', 'wb') as file:
-            pickle.dump(self.caterers, file)
+        with open('caterers.pkl', 'wb') as file:#This line opens a file named 'caterers.pkl' in write-binary mode
+            pickle.dump(self.caterers, file) # This line serialize and dump the 'caterers' attribute of the current object into the file
 
-        with open('venues.pkl', 'wb') as file:
-            pickle.dump(self.venues, file)
+        with open('venues.pkl', 'wb') as file:#This line opens a file named 'venues.pkl' in write-binary mode
+            pickle.dump(self.venues, file) # This line serialize and dump the 'venues' attribute of the current object into the file
 
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.configure(bg='light blue')
-    app = EventManagementsystem(root)
-    root.mainloop()
-    app.save_data()
+if __name__ == "__main__": # This line checks if the script is being run as the main program
+    root = tk.Tk() # This line creates a Tkinter root window
+    root.configure(bg='light blue') #This line configures the background color of the root window to 'light blue'
+    app = EventManagementsystem(root) #This line initializes the EventManagementSystem application with the root window
+    root.mainloop() #This line starts the Tkinter event loop
+    app.save_data() #This line saves the data using the 'save_data' method of the app instance
 
