@@ -862,7 +862,7 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
 
         for employee in self.employees: #This line uses a for loop which iterates over the list of employees to find the employee with the matching ID
             if employee.employee_id == employee_id: #if the employee is found based on the ID
-                employee.first_name = first_name #These lines pdate the employee's details with the new information
+                employee.first_name = first_name #These lines udate the employee's details with the new information
                 employee.last_name = last_name
                 employee.department = department
                 employee.job_title = job_title
@@ -883,7 +883,7 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
 
     def display_employees(self): #This line defines a method 'display_employees'
         if not self.employees: #if the employees are not found
-            messagebox.showinfo("Info", "No employees to display") ##This line displays a message when no employees are not found
+            messagebox.showinfo("Info", "No employees to display") #This line displays a message when no employees are not found
             return
 
         display_text = ""
@@ -949,27 +949,24 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
         messagebox.showinfo("Success", "Client added successfully") #This line displays a message when adding an Client
         self.clear_client_entries() #This line clears the entry widgets
 
-    def delete_client(self):
-        client_id = self.client_id_entry.get()
+    def delete_client(self): #This line defines a method 'delete_client'
+        client_id = self.client_id_entry.get() #This line retrieves the client ID entered in the entry widget
 
-        for index, client in enumerate(self.clients):
-            if client.client_id == client_id:
-                del self.clients[index]
-                messagebox.showinfo("Success", "Client deleted successfully")
+        for index, client in enumerate(self.clients):#This line uses for loop which iterates over the list of clients to find the client the matching ID
+            if client.client_id == client_id:#if the client is found based on the ID
+                del self.clients[index] #This line deletes the client using del
+                messagebox.showinfo("Success", "Client deleted successfully") #This line displays a message of deleting the client
                 break
-        else:
-            messagebox.showerror("Error", "Client not found")
+        else: #if the client is not found
+            messagebox.showerror("Error", "Client not found") #This line displays a message of an error when not finding the client
 
-        # Clear entry widget
-        self.clear_client_entries()
+        self.clear_client_entries() #This line clears entry widget
 
-    def modify_client(self):
-        client_id = self.client_id_entry.get()
-        # Find the client by ID
-        for client in self.clients:
-            if client.client_id == client_id:
-                # Update client details
-                client.first_name = self.client_first_name_entry.get()
+    def modify_client(self):#This line defines a method 'modify_client'
+        client_id = self.client_id_entry.get() #This line retrieves the client ID entered in the entry widget
+        for client in self.clients: #This line uses a for loop that iterates over the clients to find the client by ID
+            if client.client_id == client_id:#if the client is found based on the ID
+                client.first_name = self.client_first_name_entry.get() #These lines udate the employee's details with the new information
                 client.last_name = self.client_last_name_entry.get()
                 client.gender = self.client_gender_entry.get()
                 client.number = self.client_number_entry.get()
@@ -988,41 +985,38 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
                 client.follow_up_history = self.client_follow_up_history_entry.get()
                 client.event_timeline = self.client_event_timeline_entry.get()
 
-                messagebox.showinfo("Success", "Client modified successfully")
+                messagebox.showinfo("Success", "Client modified successfully") #This line displays a message of successfully modifying the client
                 break
-        else:
-            messagebox.showerror("Error", "Client not found")
+        else:#if the client is not found
+            messagebox.showerror("Error", "Client not found") #This line displays a message of an error due to the client not found
 
-        # Clear entry widgets
-        self.clear_client_entries()
+        self.clear_client_entries() #This line clears entry widgets
 
-    def display_clients(self):
-        if not self.clients:
-            messagebox.showinfo("Info", "No clients to display")
+    def display_clients(self): #This line defines a method 'display_clients'
+        if not self.clients: #if the clients are not found
+            messagebox.showinfo("Info", "No clients to display") #This line displays a message when no clients are not found
             return
 
         display_text = ""
+        for client in self.clients:#This lines uses a for loop that iterates over the client
+            display_text += f"Client ID: {client.client_id}, First Name: {client.first_name}, Last Name: {client.last_name},  Gender: {client.gender}, Number: {client.number}, Email: {client.email}, Budget: {client.budget}, Event Type: {client.event_type}, Address: {client.address}, Event Preference:{client.event_preference}, Event History: {client.event_history}, Communication :{client.communication_method}\n"
+
+        messagebox.showinfo("Clients", display_text) #This line displays a message to show all the clients information 
+
+    def display_single_client(self):#This line defines a method 'display_single_client'
+        client_id = self.client_id_entry.get() #This line retrieves the client ID entered in the entry widget
+
         for client in self.clients:
-            display_text += f"Client ID: {client.client_id}, First Name: {client.first_name}, Last Name: {client.last_name}, Email: {client.email}\n"
-
-        messagebox.showinfo("Clients", display_text)
-
-    def display_single_client(self):
-        client_id = self.client_id_entry.get()
-
-        for client in self.clients:
-            if client.client_id == client_id:
-                display_text = f"Client ID: {client.client_id}, First Name: {client.first_name}, Last Name: {client.last_name}, Gender: {client.gender}, Number: {client.number}, Email: {client.email}, Budget: {client.budget}, Event Type: {client.event_type}\n"
-                # Add other fields as needed
-                messagebox.showinfo("Client Details", display_text)
+            if client.client_id == client_id: #This line uses a for loop that iterates over the clients to find the client by ID
+               display_text += f"Client ID: {client.client_id}, First Name: {client.first_name}, Last Name: {client.last_name},  Gender: {client.gender}, Number: {client.number}, Email: {client.email}, Budget: {client.budget}, Event Type: {client.event_type}, Address: {client.address}, Event Preference:{client.event_preference}, Event History: {client.event_history}, Communication :{client.communication_method}\n"
+               messagebox.showinfo("Client Details", display_text) #This line displays a message of the specific client details
                 break
-        else:
-            messagebox.showerror("Error", "Client not found")
+        else: #if the client is nout found
+            messagebox.showerror("Error", "Client not found") #This line displays a an error message of the specific client not found
 
-        # Clear entry widget
-        self.clear_client_entries()
+        self.clear_client_entries() #This line clears entry widget
 
-    def clear_client_entries(self):
+    def clear_client_entries(self): #This line defines a method 'clear_entries'
         self.client_id_entry.delete(0, tk.END)
         self.client_first_name_entry.delete(0, tk.END)
         self.client_last_name_entry.delete(0, tk.END)
@@ -1043,8 +1037,8 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
         self.client_follow_up_history_entry.delete(0, tk.END)
         self.client_event_timeline_entry.delete(0, tk.END)
 
-    def add_supplier(self):
-        # Get supplier details from entry widgets
+    def add_supplier(self):#This line defines a method 'add_supplier'
+        # Until 1060 the lines get supplier details from entry widgets
         supplier_details = {
             "ID": self.supplier_id_entry.get(),
             "name": self.supplier_name_entry.get(),
@@ -1065,41 +1059,31 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
             "Payment history": self.supplier_payment_history_entry.get()
         }
 
-        # Add supplier to the list
-        self.suppliers.append(supplier_details)
+        self.suppliers.append(supplier_details) #This line adds supplier to the list
 
-        messagebox.showinfo("Success", "Supplier added successfully")
+        messagebox.showinfo("Success", "Supplier added successfully") #This line displays a message of successfully adding the supplier
 
-        # Clear entry widgets
-        self.clear_supplier_entries()
+        self.clear_supplier_entries() #This line clears entry widgets
 
-    def delete_supplier(self):
-        # Get supplier ID from entry widget
-        supplier_id = self.supplier_id_entry.get()
+    def delete_supplier(self): #This line defines a method 'delete_supplier'
+        supplier_id = self.supplier_id_entry.get() #This line gets supplier ID from entry widget
 
-        # Search and delete the supplier
-        for supplier in self.suppliers:
-            if supplier["ID"] == supplier_id:
-                self.suppliers.remove(supplier)
-                # Show success message
-                messagebox.showinfo("Success", "Supplier deleted successfully.")
+        for supplier in self.suppliers: #This line uses a for loop that iterates over the suppliers
+            if supplier["ID"] == supplier_id:#if the supplier macthes the ID 
+                self.suppliers.remove(supplier) #This line removes the supplier by using .remove()
+                messagebox.showinfo("Success", "Supplier deleted successfully.") # This line shows success message
                 break
-        else:
-            # Show error message if supplier not found
-            messagebox.showerror("Error", "Supplier not found.")
+        else: #if the supplier is not found
+            messagebox.showerror("Error", "Supplier not found.") #This line shows an error message if supplier not found
 
-        # Clear entry widget
-        self.clear_supplier_entries()
+        self.clear_supplier_entries() #This line clear entry widget
 
-    def modify_supplier(self):
-        # Get supplier ID from entry widget
-        supplier_id = self.supplier_id_entry.get()
+    def modify_supplier(self): #This line defines a method 'modify_supplier'
+        supplier_id = self.supplier_id_entry.get() #This line gets supplier ID from entry widget
 
-        # Search and modify the supplier
-        for supplier in self.suppliers:
-            if supplier["ID"] == supplier_id:
-                # Update supplier details
-                supplier["name"] = self.supplier_name_entry.get()
+        for supplier in self.suppliers: #This line uses a for loop that iterates over the suppliers
+            if supplier["ID"] == supplier_id:#if the supplier macthes the ID 
+                supplier["name"] = self.supplier_name_entry.get() #These lines update supplier details
                 supplier["Email"] = self.supplier_email_entry.get()
                 supplier["Phone number"] = self.supplier_phone_number_entry.get()
                 supplier["Pricing"] = self.supplier_pricing_entry.get()
@@ -1116,52 +1100,43 @@ class EventManagementsystem: #This line defines a class named EventManagementsys
                 supplier["Feedback history"] = self.supplier_feedback_history_entry.get()
                 supplier["Payment history"] = self.supplier_payment_history_entry.get()
 
-                # Show success message
-                messagebox.showinfo("Success", "Supplier modified successfully.")
+                messagebox.showinfo("Success", "Supplier modified successfully.") #This line shows success message
                 break
         else:
-            # Show error message if supplier not found
-            messagebox.showerror("Error", "Supplier not found.")
+            messagebox.showerror("Error", "Supplier not found.") #This line Shows error message if supplier not found
 
-        # Clear entry widget
-        self.clear_supplier_entries()
+        self.clear_supplier_entries() #This line clear entry widget
 
-    def display_single_supplier(self):
-        # Get supplier ID from entry widget
-        supplier_id = self.supplier_id_entry.get()
+    def display_single_supplier(self): #This line defines a method 'display_single_supplier'
+        supplier_id = self.supplier_id_entry.get() #This line gets supplier ID from entry widget
 
-        # Search and display the supplier details in a messagebox
-        for supplier in self.suppliers:
-            if supplier["ID"] == supplier_id:
-                message = ""
-                for key, value in supplier.items():
-                    message += f"{key}: {value}\n"
+        for supplier in self.suppliers:#This line uses a for loop that iterates over the suppliers
+            if supplier["ID"] == supplier_id:#if the supplier macthes the ID 
+                message = "" #This line initializes an empty string to store the formatted message
+                for key, value in supplier.items(): #This line iterates over each key-value pair in the 'supplier' dictionary
+                    message += f"{key}: {value}\n" #This line format each key-value pair and append it to the message string
 
-                # Show supplier details
-                messagebox.showinfo("Supplier Details", message)
+                messagebox.showinfo("Supplier Details", message) #This line shows supplier details
                 break
         else:
-            # Show error message if supplier not found
-            messagebox.showerror("Error", "Supplier not found.")
+            messagebox.showerror("Error", "Supplier not found.") #This line shows an error message if supplier not found
 
-        # Clear entry widget
-        self.clear_supplier_entries()
+        self.clear_supplier_entries() #This line clears entry widget
 
-    def display_suppliers(self):
-        if not self.suppliers:
-            messagebox.showinfo("Info", "No suppliers to display")
+    def display_suppliers(self): #This line defines a method 'display_single_supplier'
+        if not self.suppliers: #if the suppliers are not found
+            messagebox.showinfo("Info", "No suppliers to display") #This line shows no suppliers to display
             return
 
         display_text = ""
-        for supplier in self.suppliers:
-            for key, value in supplier.items():
-                display_text += f"{key}: {value}\n"
-            display_text += "\n"  # Add a new line between each supplier
+        for supplier in self.suppliers: #This line uses a for loop that iterates over the suppliers
+            for key, value in supplier.items(): #This line iterates over each key-value pair in the 'supplier' dictionary
+                display_text += f"{key}: {value}\n" #This line format each key-value pair and append it to the message string
+            display_text += "\n"  # This line adds a new line between each supplier
 
-        messagebox.showinfo("Suppliers", display_text)
-    def clear_supplier_entries(self):
-        # Clear all entry widgets for supplier
-        self.supplier_id_entry.delete(0, tk.END)
+        messagebox.showinfo("Suppliers", display_text) #This line shows the suppliers info
+    def clear_supplier_entries(self): #This line defines a method 'clear_supplier_entries'
+        self.supplier_id_entry.delete(0, tk.END) # Clear all entry widgets for supplier
         self.supplier_name_entry.delete(0, tk.END)
         self.supplier_email_entry.delete(0, tk.END)
         self.supplier_phone_number_entry.delete(0, tk.END)
